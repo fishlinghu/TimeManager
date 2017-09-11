@@ -1,11 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.fishlinghu.timemanager.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/progressBarCircle"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/drawable_circle_dark_blue"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="100"
+        android:progressDrawable="@drawable/drawable_circle_yellow"
+        android:rotation="-90" />
+
+    <EditText
+        android:id="@+id/editTextMinute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewTime"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="15"
+        android:maxLines="1"
+        android:minEms="5"
+        android:text="1" />
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="00:01:00"
+        android:textSize="40sp" />
+
+    <Button
+        android:id="@+id/button_start_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/progressBarCircle"
+        android:layout_below="@+id/progressBarCircle"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="21dp"
+        android:background="@android:color/holo_orange_dark"
+        android:text="Start" />
+
+    <Button
+        android:id="@+id/button_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button_start_stop"
+        android:layout_alignBottom="@+id/button_start_stop"
+        android:layout_alignEnd="@+id/progressBarCircle"
+        android:layout_marginEnd="26dp"
+        android:background="@color/colorPrimary"
+        android:text="Reset"
+        android:textColor="#ffffff" />
+
+</RelativeLayout>
