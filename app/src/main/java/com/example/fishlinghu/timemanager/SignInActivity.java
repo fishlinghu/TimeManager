@@ -151,7 +151,7 @@ public class SignInActivity extends AppCompatActivity implements
                                         finish();
                                     }else{
                                         // Account does not exist, create one
-                                        // startActivity(new Intent(SignInActivity.this, CreateAccountActivity.class));
+                                        startActivity(new Intent(SignInActivity.this, CreateAccountActivity.class));
                                         finish();
                                     }
                                 }
