@@ -147,7 +147,7 @@ public class SignInActivity extends AppCompatActivity implements
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
                                         // Account existence, go the Main page
-                                        // startActivity(new Intent(SignInActivity.this, MainPageActivity.class));
+                                        startActivity(new Intent(SignInActivity.this, MainActivity.class));
                                         finish();
                                     }else{
                                         // Account does not exist, create one
