@@ -1,5 +1,6 @@
 package com.example.fishlinghu.timemanager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -55,7 +56,7 @@ public class DailyAnalysisActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.daily_analysis, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -80,13 +81,10 @@ public class DailyAnalysisActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        if (id == R.id.nav_countdown) {
+            // Go to countdown page
+            startActivity(new Intent(DailyAnalysisActivity.this, MainActivity.class));
+        } else if (id == R.id.nav_daily_analysis) {
 
         } else if (id == R.id.nav_share) {
 

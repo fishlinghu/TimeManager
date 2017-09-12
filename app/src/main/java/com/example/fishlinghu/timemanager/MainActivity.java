@@ -94,14 +94,11 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        if (id == R.id.nav_countdown) {
+            // Go to countdown page
+            // Do nothing since this is already the countdown page
+        } else if (id == R.id.nav_daily_analysis) {
+            startActivity(new Intent(MainActivity.this, DailyAnalysisActivity.class));
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
@@ -185,8 +182,6 @@ public class MainActivity extends AppCompatActivity
             setTimerValues();
             // call to initialize the progress bar values
             setProgressBarValues();
-            // showing the reset icon
-            buttonReset.setVisibility(View.VISIBLE);
             // changing play icon to stop icon
             buttonStartStop.setText("Stop");
             // making edit text not editable
@@ -197,9 +192,6 @@ public class MainActivity extends AppCompatActivity
             startCountDownTimer();
 
         } else {
-
-            // hiding the reset icon
-            buttonReset.setVisibility(View.GONE);
             // changing stop icon to start icon
             buttonStartStop.setText("Start");
             // making edit text editable
