@@ -3,9 +3,8 @@ package com.example.fishlinghu.timemanager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,6 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
 
 public class DailyAnalysisActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,6 +50,8 @@ public class DailyAnalysisActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        createPieChart();
     }
 
     @Override
@@ -95,5 +106,51 @@ public class DailyAnalysisActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void createPieChart() {
+        PieChart pieChart = (PieChart) findViewById(R.id.piechart);
+        pieChart.setUsePercentValues(true);
+        // IMPORTANT: In a PieChart, no values (Entry) should have the same
+        // xIndex (even if from different DataSets), since no values can be
+        // drawn above each other.
+        ArrayList<Entry> yvalues = new ArrayList<Entry>();
+        yvalues.add(new Entry(8f, 0));
+        yvalues.add(new Entry(15f, 1));
+        yvalues.add(new Entry(12f, 2));
+        yvalues.add(new Entry(25f, 3));
+        yvalues.add(new Entry(23f, 4));
+        yvalues.add(new Entry(17f, 5));
+
+        PieDataSet dataSet = new PieDataSet(yvalues, "Election Results");
+
+        ArrayList<String> xVals = new ArrayList<String>();
+
+        xVals.add("January");
+        xVals.add("February");
+        xVals.add("March");
+        xVals.add("April");
+        xVals.add("May");
+        xVals.add("June");
+
+        PieData data = new PieData(xVals, dataSet);
+
+        // In percentage Term
+        data.setValueFormatter(new PercentFormatter());
+        // Default value
+        //data.setValueFormatter(new DefaultValueFormatter(0));
+
+        pieChart.setData(data);
+
+        dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        //dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+        //dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        //dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+        //dataSet.setColors(ColorTemplate.PASTEL_COLORS);
+
+        pieChart.setDescription("This is Pie Chart");
+
+        //Disable Hole in the Pie Chart
+        pieChart.setDrawHoleEnabled(false);
     }
 }
