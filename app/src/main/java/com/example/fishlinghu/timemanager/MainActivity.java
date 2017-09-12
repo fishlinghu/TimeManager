@@ -1,5 +1,6 @@
 package com.example.fishlinghu.timemanager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
@@ -256,6 +257,9 @@ public class MainActivity extends AppCompatActivity
                 editTextMinute.setEnabled(true);
                 // changing the timer status to stopped
                 timerStatus = TimerStatus.STOPPED;
+
+                // jump to the page to categorize the completed tomato
+                startActivity(new Intent(MainActivity.this, CompletionActivity.class));
             }
 
         }.start();
