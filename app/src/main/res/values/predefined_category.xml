@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category_array">
+        <item>Homework</item>
+        <item>Experiment</item>
+        <item>Programming</item>
+        <item>Studying</item>
+        <item>Reading</item>
+        <item>Workout</item>
+        <item>Running</item>
+        <item>Sport</item>
+        <item>Meal</item>
+        <item>Other</item>
+    </string-array>
+</resources>

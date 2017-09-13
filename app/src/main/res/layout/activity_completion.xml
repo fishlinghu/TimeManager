@@ -1,9 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.fishlinghu.timemanager.CompletionActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView_congrat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_marginTop="36dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/button_save" />
+
+    <TextView
+        android:id="@+id/textView_plz_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please categorize your tomato"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="33dp"
+        android:layout_below="@+id/textView_congrat"
+        android:layout_alignStart="@+id/button_save" />
+
+    <Spinner
+        android:id="@+id/spinner_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="50dp"
+        android:layout_below="@+id/textView_plz_select"
+        android:layout_alignStart="@+id/button_save"/>
+
+    <EditText
+        android:id="@+id/editText_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="50dp"
+        android:layout_below="@+id/spinner_category"
+        android:layout_alignStart="@+id/button_save"/>
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done!"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="74dp"
+        android:layout_marginStart="35dp"
+        android:layout_below="@+id/editText_category"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

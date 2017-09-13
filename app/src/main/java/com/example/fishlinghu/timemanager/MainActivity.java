@@ -241,8 +241,6 @@ public class MainActivity extends AppCompatActivity
                 textViewTime.setText(hmsTimeFormatter(timeCountInMilliSeconds));
                 // call to initialize the progress bar values
                 setProgressBarValues();
-                // hiding the reset icon
-                buttonReset.setVisibility(View.GONE);
                 // changing stop icon to start icon
                 buttonStartStop.setText("Start");
                 // making edit text editable

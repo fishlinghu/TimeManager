@@ -138,13 +138,16 @@ public class DailyAnalysisActivity extends AppCompatActivity
         // In percentage Term
         data.setValueFormatter(new PercentFormatter());
         // Default value
-        //data.setValueFormatter(new DefaultValueFormatter(0));
+        // data.setValueFormatter(new DefaultValueFormatter(0));
 
         pieChart.setData(data);
 
-        dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        // seems that there are some issues with color template
+        // only 5 colors are available, and it start to repeat when there are >= 6 entries
+
+        //dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
         //dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-        //dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         //dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
         //dataSet.setColors(ColorTemplate.PASTEL_COLORS);
 
