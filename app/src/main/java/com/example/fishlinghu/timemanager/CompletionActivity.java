@@ -12,6 +12,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class CompletionActivity extends AppCompatActivity {
@@ -36,10 +38,12 @@ public class CompletionActivity extends AppCompatActivity {
 
         // add default categories to the spinner
         spinner_category = findViewById(R.id.spinner_category);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.category_array, android.R.layout.simple_spinner_item);
+        String[] category_array = getResources().getStringArray(R.array.category_array);
+        ArrayList<String> category_arrayList = new ArrayList<String>(Arrays.asList(category_array));
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, category_arrayList);
         // add categories that have been added by the user
-        // adapter.add("Temp!"); fucking BUG
+        adapter.add("Temp!");
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner_category.setAdapter(adapter);
@@ -50,6 +54,8 @@ public class CompletionActivity extends AppCompatActivity {
                 if (Objects.equals("Other", selected_category)) {
                     // let user create a new category
                     editText_category.setVisibility(View.VISIBLE);
+                } else {
+                    editText_category.setVisibility(View.GONE);
                 }
             }
 
