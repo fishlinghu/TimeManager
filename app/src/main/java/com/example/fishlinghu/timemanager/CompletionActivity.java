@@ -1,7 +1,9 @@
 package com.example.fishlinghu.timemanager;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,13 +12,37 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
 public class CompletionActivity extends AppCompatActivity {
+
+    private String[] Month = {
+            "",
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+    };
+
+    private DatabaseReference reference;
+    private FirebaseUser GoogleUser;
+    private String AccountEmail;
 
     private TextView textView_congrat;
     private Button button_save;
@@ -27,6 +53,10 @@ public class CompletionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_completion);
+
+        GoogleUser = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference();
+        AccountEmail = GoogleUser.getEmail();
 
         // set the congratulation text
         textView_congrat = findViewById(R.id.textView_congrat);
@@ -67,15 +97,38 @@ public class CompletionActivity extends AppCompatActivity {
 
         button_save = findViewById(R.id.button_save);
         button_save.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             public void onClick(View v) {
+                String category;
                 if (!editText_category.getText().toString().isEmpty()) {
                     // use the user defined category
-                    String new_category = editText_category.getText().toString();
-                    Toast.makeText(getApplicationContext(), new_category, Toast.LENGTH_LONG).show();
+                    category = editText_category.getText().toString();
+                    // Toast.makeText(getApplicationContext(), category, Toast.LENGTH_LONG).show();
                 } else {
                     // use the selected category
+                    category = spinner_category.getSelectedItem().toString();
                 }
                 // store the tomato with selected category
+                int duration = getIntent().getIntExtra("duration", 0);
+                Tomato new_tomato = new Tomato(category, duration);
+
+                org.joda.time.LocalDate joda_date = new org.joda.time.LocalDate();
+                int month_idx = joda_date.getMonthOfYear();
+                int day_of_month = joda_date.getDayOfMonth();
+
+                String tomato_key = reference.child("users")
+                        .child( AccountEmail.replace(".",",") )
+                        .child("tomatoes")
+                        .child(Month[month_idx])
+                        .child(String.valueOf(day_of_month)).push().getKey();
+                reference.child("users")
+                        .child( AccountEmail.replace(".",",") )
+                        .child("tomatoes")
+                        .child(Month[month_idx])
+                        .child(String.valueOf(day_of_month))
+                        .child(tomato_key)
+                        .setValue(new_tomato);
+
                 startActivity(new Intent(CompletionActivity.this, MainActivity.class));
                 finish();
             }

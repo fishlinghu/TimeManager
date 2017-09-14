@@ -24,6 +24,8 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
+    private Integer time_in_min;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -208,16 +210,16 @@ public class MainActivity extends AppCompatActivity
      * method to initialize the values for count down timer
      */
     private void setTimerValues() {
-        int time = 0;
+        time_in_min = 0;
         if (!editTextMinute.getText().toString().isEmpty()) {
             // fetching value from edit text and type cast to integer
-            time = Integer.parseInt(editTextMinute.getText().toString().trim());
+            time_in_min = Integer.parseInt(editTextMinute.getText().toString().trim());
         } else {
             // toast message to fill edit text
             //Toast.makeText(getApplicationContext(), getString(R.string.), Toast.LENGTH_LONG).show();
         }
         // assigning values after converting to milliseconds
-        timeCountInMilliSeconds = time * 60 * 1000;
+        timeCountInMilliSeconds = time_in_min * 60 * 1000;
     }
 
     /**
@@ -249,7 +251,9 @@ public class MainActivity extends AppCompatActivity
                 timerStatus = TimerStatus.STOPPED;
 
                 // jump to the page to categorize the completed tomato
-                startActivity(new Intent(MainActivity.this, CompletionActivity.class));
+                Intent my_intent = new Intent(MainActivity.this, CompletionActivity.class);
+                my_intent.putExtra("duration", time_in_min);
+                startActivity(my_intent);
             }
 
         }.start();

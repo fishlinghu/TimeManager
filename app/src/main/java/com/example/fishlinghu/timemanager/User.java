@@ -6,7 +6,7 @@ package com.example.fishlinghu.timemanager;
 
 public class User {
 
-    private String name ;
+    private String name;
     private String photoUrl;
 
     public User() {
